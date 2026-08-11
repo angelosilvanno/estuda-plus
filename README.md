@@ -27,8 +27,6 @@ Para conseguir rodar este projeto localmente na sua máquina, você precisará t
 npm install -g @angular/cli
 ```
 
----
-
 ### 🔨 Guia de instalação
 
 Siga as etapas abaixo para clonar o repositório, instalar todas as dependências necessárias e executar o ambiente de desenvolvimento local:
@@ -58,4 +56,5 @@ Siga as etapas abaixo para clonar o repositório, instalar todas as dependência
     npm start
     ```
     
----
+## 📦 Tecnologias usadas:
+* As principais ferramentas e tecnologias utilizadas no desenvolvimento do front-end deste projeto foram:
