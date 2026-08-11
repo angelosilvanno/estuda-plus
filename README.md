@@ -12,8 +12,6 @@ O principal objetivo da aplicação é aumentar a produtividade e incentivar a c
 *   **Autenticação:** Telas responsivas de Login, Cadastro e Recuperação de Senha, unificadas em uma identidade visual moderna com foco em usabilidade.
 *   **Cronograma de Estudos:** Painel reativo com grade horária semanal, permitindo visualizar de forma clara as prioridades e o status das sessões, além de contar com uma simulação interativa de agendamento de tarefas pendentes.
 
----
-
 ### ⚙️ Pré-requisitos
 
 Para conseguir rodar este projeto localmente na sua máquina, você precisará ter as seguintes ferramentas instaladas:
