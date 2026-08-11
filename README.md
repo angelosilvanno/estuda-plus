@@ -57,4 +57,4 @@ Siga as etapas abaixo para clonar o repositório, instalar todas as dependência
     ```
     
 ## 📦 Tecnologias usadas:
-* As principais ferramentas e tecnologias utilizadas no desenvolvimento do front-end deste projeto foram:
+* As principais ferramentas e tecnologias utilizadas no projeto foram:
