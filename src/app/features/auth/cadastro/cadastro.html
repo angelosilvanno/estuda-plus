@@ -1,0 +1,159 @@
+<div class="min-h-screen flex bg-(--bg-primary) text-(--text-main) font-sans antialiased">
+  
+  <!-- COLUNA ESQUERDA: Painel Motivacional (Oculto no Mobile) -->
+  <div class="hidden lg:flex lg:w-1/2 bg-linear-to-br from-blue-600 via-blue-700 to-blue-800 p-16 flex-col justify-between relative overflow-hidden">
+    <!-- Grafismo de fundo decorativo e sutil (Azul para representar foco e organização) -->
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-white via-blue-500 to-transparent"></div>
+    
+    <!-- Logo/Identidade do Painel -->
+    <div class="flex items-center gap-2.5 z-10">
+      <div class="w-9 h-9 rounded-xl bg-white text-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-950/20">E+</div>
+      <span class="font-bold text-xl text-white tracking-tight">Estuda+</span>
+    </div>
+
+    <!-- Mensagem Principal de Boas-vindas -->
+    <div class="max-w-md z-10">
+      <span class="text-blue-100 text-xs font-semibold uppercase tracking-wider bg-blue-500/30 px-3 py-1 rounded-full">Progresso & Consistência</span>
+      <h2 class="text-4xl font-extrabold text-white tracking-tight mt-4 leading-tight">Transforme suas horas de estudo em resultados reais.</h2>
+      <p class="text-blue-100/80 text-sm leading-relaxed mt-4">Junte-se a milhares de estudantes que utilizam o Estuda+ para construir hábitos saudáveis de estudo, gerenciar matérias e acompanhar gráficos de evolução diária.</p>
+    </div>
+
+    <!-- Rodapé Motivacional -->
+    <div class="text-xs text-blue-200/60 z-10">
+      “O segredo do sucesso é a constância no objetivo.”
+    </div>
+  </div>
+
+  <!-- COLUNA DIREITA: Card de Formulário de Cadastro -->
+  <div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 md:p-16 relative">
+    
+    <!-- Logo visível apenas no Mobile/Tablet -->
+    <div class="flex items-center gap-2 mb-6 lg:hidden">
+      <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-md">E+</div>
+      <span class="font-bold text-lg tracking-tight">Estuda+</span>
+    </div>
+
+    <!-- Wrapper do Card de Cadastro -->
+    <div class="w-full max-w-md bg-(--bg-surface) p-8 rounded-2xl border border-(--border-color) shadow-sm">
+      <div class="mb-5">
+        <h1 class="text-xl font-bold tracking-tight">Criar sua conta</h1>
+        <p class="text-xs text-(--text-muted) mt-1">Crie sua conta gratuitamente e comece a planejar sua rotina hoje mesmo.</p>
+      </div>
+
+      <!-- Alerta de Erro Dinâmico -->
+      <div *ngIf="erroMensagem" class="mb-4 p-3.5 bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 rounded-xl text-xs border border-red-200/50 flex items-center gap-2">
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>{{ erroMensagem }}</span>
+      </div>
+
+      <!-- Formulário -->
+      <form (ngSubmit)="onSubmit()" class="space-y-3.5">
+        
+        <!-- Campo Nome -->
+        <div>
+          <label for="nome" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1">Nome Completo</label>
+          <input 
+            type="text" 
+            id="nome" 
+            name="nome"
+            [(ngModel)]="nome"
+            placeholder="Ex: Carlos Silva" 
+            autocomplete="name"
+            required
+            class="w-full bg-(--bg-primary) border border-(--border-color) rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          >
+        </div>
+
+        <!-- Campo E-mail -->
+        <div>
+          <label for="email" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1">E-mail</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            [(ngModel)]="email"
+            placeholder="seu-email@provedor.com" 
+            autocomplete="email"
+            required
+            class="w-full bg-(--bg-primary) border border-(--border-color) rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          >
+        </div>
+
+        <!-- Grid de Senhas (Lado a Lado no Desktop) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <!-- Campo Senha -->
+          <div>
+            <label for="password" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1">Senha</label>
+            <input 
+              type="password" 
+              id="password" 
+              name="password"
+              [(ngModel)]="senha"
+              placeholder="••••••••" 
+              autocomplete="new-password"
+              required
+              class="w-full bg-(--bg-primary) border border-(--border-color) rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            >
+          </div>
+
+          <!-- Campo Confirmar Senha -->
+          <div>
+            <label for="confirmarSenha" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1">Confirmar Senha</label>
+            <input 
+              type="password" 
+              id="confirmarSenha" 
+              name="confirmarSenha"
+              [(ngModel)]="confirmarSenha"
+              placeholder="••••••••" 
+              autocomplete="new-password"
+              required
+              class="w-full bg-(--bg-primary) border border-(--border-color) rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            >
+          </div>
+        </div>
+
+        <!-- Termos de Aceite -->
+        <div class="flex items-start gap-2 pt-1">
+          <input 
+            type="checkbox" 
+            id="termos"
+            name="termos"
+            [(ngModel)]="aceitouTermos"
+            class="w-4.5 h-4.5 rounded text-blue-600 border-(--border-color) focus:ring-blue-500 bg-(--bg-primary) mt-0.5"
+          >
+          <label for="termos" class="text-xs text-(--text-muted) leading-relaxed">
+            Eu aceito os <a href="#" class="text-blue-600 hover:underline font-semibold">Termos de Uso</a> e as políticas de privacidade do Estuda+.
+          </label>
+        </div>
+
+        <!-- Botão Registrar -->
+        <button 
+          type="submit" 
+          [disabled]="loading"
+          class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all shadow-md shadow-blue-500/10 active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2 mt-2 cursor-pointer"
+        >
+          <!-- Loader de carregamento animado -->
+          <svg *ngIf="loading" class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          {{ loading ? 'Criando Conta...' : 'Cadastrar-me' }}
+        </button>
+
+      </form>
+
+      <!-- Divisor -->
+      <div class="relative flex items-center my-5">
+        <div class="grow border-t border-(--border-color)"></div>
+        <span class="shrink mx-4 text-[10px] text-(--text-muted) uppercase tracking-widest font-semibold">Já é cadastrado?</span>
+        <div class="grow border-t border-(--border-color)"></div>
+      </div>
+
+      <!-- Link para Login -->
+      <p class="text-center text-xs text-(--text-muted)">
+        Já possui uma conta? 
+        <a [routerLink]="['/auth/login']" class="text-blue-600 hover:underline font-semibold ml-0.5">Fazer login</a>
+      </p>
+    </div>
+  </div>
+</div>
