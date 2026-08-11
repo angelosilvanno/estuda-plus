@@ -8,7 +8,7 @@ O **Estuda+** é um sistema web desenvolvido para auxiliar estudantes (sejam do 
 
 O principal objetivo da aplicação é aumentar a produtividade e incentivar a constância através de uma interface limpa, moderna e minimalista, inspirada em ferramentas consolidadas como o *Notion* e o *Todoist*, evitando o excesso de informações e o cansaço visual.
 
-### Funcionalidades já estruturadas:
+### Funcionalidades:
 *   **Autenticação:** Telas responsivas de Login, Cadastro e Recuperação de Senha, unificadas em uma identidade visual moderna com foco em usabilidade.
 *   **Cronograma de Estudos:** Painel reativo com grade horária semanal, permitindo visualizar de forma clara as prioridades e o status das sessões, além de contar com uma simulação interativa de agendamento de tarefas pendentes.
 
@@ -57,4 +57,5 @@ Siga as etapas abaixo para clonar o repositório, instalar todas as dependência
     ```bash
     npm start
     ```
-
+    
+---
