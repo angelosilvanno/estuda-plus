@@ -1,1 +1,95 @@
-<p>pomodoro works!</p>
+<div class="space-y-6">
+
+  <div class="border-b border-(--border-color) pb-5">
+    <div class="flex items-center gap-2 text-xs text-(--text-muted) mb-1">
+      <span>Foco</span>
+      <span>&gt;</span>
+      <span class="text-(--text-main) font-medium">Pomodoro</span>
+    </div>
+    <h1 class="text-2xl font-bold tracking-tight">Timer Pomodoro</h1>
+    <p class="text-xs text-(--text-muted) mt-1">Gerencie seu tempo de estudo de forma produtiva com a técnica Pomodoro.</p>
+  </div>
+
+  <div class="max-w-md mx-auto bg-(--bg-surface) rounded-2xl border border-slate-100 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)] p-8 flex flex-col items-center justify-center space-y-8">
+    
+    <div class="flex items-center gap-2 p-1 bg-(--bg-primary) border border-(--border-color) rounded-xl shadow-3xs">
+      <button 
+        (click)="setModo('foco')"
+        [class]="modo === 'foco' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg text-(--text-muted) hover:text-(--text-main) cursor-pointer'"
+      >
+        Foco (25m)
+      </button>
+      <button 
+        (click)="setModo('descanso')"
+        [class]="modo === 'descanso' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg text-(--text-muted) hover:text-(--text-main) cursor-pointer'"
+      >
+        Descanso (5m)
+      </button>
+    </div>
+
+    <div class="relative w-64 h-64 flex items-center justify-center">
+      <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" class="stroke-slate-100 dark:stroke-slate-800" stroke-width="4.5"></circle>
+        <circle 
+          cx="50" 
+          cy="50" 
+          r="45" 
+          fill="none" 
+          [class]="modo === 'foco' ? 'stroke-blue-600 transition-all duration-300' : 'stroke-emerald-500 transition-all duration-300'" 
+          stroke-width="4.5" 
+          stroke-dasharray="282.7" 
+          [style.stroke-dashoffset]="dashOffset"
+          stroke-linecap="round"
+        ></circle>
+      </svg>
+      
+      <div class="text-center z-10">
+        <h2 class="text-4xl font-mono font-bold tracking-tight text-(--text-main)">{{ formatarTempo }}</h2>
+        <span [class]="modo === 'foco' ? 'text-[10px] font-extrabold uppercase tracking-wider text-blue-600 bg-blue-50 dark:bg-blue-950/20 dark:text-blue-400 px-2 py-0.5 rounded border border-blue-100/50 dark:border-blue-900/30' : 'text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 bg-emerald-50 dark:bg-emerald-950/20 dark:text-emerald-400 px-2 py-0.5 rounded border border-emerald-100/50 dark:border-emerald-900/30'">
+          {{ modo === 'foco' ? 'Foco' : 'Descanso' }}
+        </span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3 w-full">
+      <button 
+        *ngIf="!isRodando"
+        (click)="iniciar()"
+        class="flex-1 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow-md shadow-blue-500/10 active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2 text-xs"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+        Iniciar Foco
+      </button>
+
+      <button 
+        *ngIf="isRodando"
+        (click)="pausar()"
+        class="flex-1 py-3 px-4 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-(--text-main) font-semibold rounded-xl border border-(--border-color) active:scale-[0.99] transition-all cursor-pointer flex items-center justify-center gap-2 text-xs"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0118 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+        Pausar Foco
+      </button>
+
+      <button 
+        (click)="reiniciar()"
+        class="p-3 bg-(--bg-primary) text-(--text-muted) hover:text-(--text-main) border border-(--border-color) rounded-xl hover:bg-slate-100 dark:hover:bg-slate-850 cursor-pointer transition-all"
+        title="Reiniciar"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 8H18.5"/></svg>
+      </button>
+    </div>
+
+    <div class="w-full bg-(--bg-primary) border border-(--border-color) p-4 rounded-xl flex items-center justify-between text-xs">
+      <div class="flex items-center gap-2.5">
+        <div class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-pulse"></div>
+        <div>
+          <p class="text-(--text-muted) text-[10px]">Ciclos Concluídos</p>
+          <strong class="text-(--text-main) font-extrabold text-sm">{{ ciclos }}</strong>
+        </div>
+      </div>
+      <span class="text-[10px] text-emerald-600 bg-emerald-50 dark:bg-emerald-950/20 dark:text-emerald-400 border border-emerald-100/50 dark:border-emerald-900/30 px-2 py-0.5 rounded font-bold uppercase">Meta: 4 ciclos</span>
+    </div>
+
+  </div>
+
+</div>
