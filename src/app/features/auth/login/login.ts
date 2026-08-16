@@ -11,12 +11,10 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login.css'
 })
 export class Login {
-  // Modelos de dados vinculados ao formulário
   email = '';
   senha = '';
   lembrarMe = false;
   
-  // Controle de estados visuais
   loading = false;
   erroMensagem = '';
 
@@ -31,10 +29,50 @@ export class Login {
     this.loading = true;
     this.erroMensagem = '';
 
-    // Simulando uma autenticação rápida de front-end para redirecionar ao Dashboard
+    const cadastroJSON = localStorage.getItem('usuarioCadastro');
+
+    if (!cadastroJSON) {
+      this.loading = false;
+      this.erroMensagem = 'E-mail ou senha incorretos.';
+      return;
+    }
+
+    try {
+      const cadastro = JSON.parse(cadastroJSON);
+
+      if (cadastro.email !== this.email) {
+        this.loading = false;
+        this.erroMensagem = 'E-mail ou senha incorretos.';
+        return;
+      }
+
+      if (cadastro.senha && cadastro.senha !== this.senha) {
+        this.loading = false;
+        this.erroMensagem = 'E-mail ou senha incorretos.';
+        return;
+      }
+
+      const usuarioLogado = {
+        nome: cadastro.nome,
+        email: cadastro.email,
+        curso: cadastro.curso || 'Estudante'
+      };
+
+      if (this.lembrarMe) {
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+      } else {
+        sessionStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+        localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
+      }
+
+    } catch (error) {
+      this.loading = false;
+      this.erroMensagem = 'Erro ao processar as credenciais.';
+      return;
+    }
+
     setTimeout(() => {
       this.loading = false;
-      // Redireciona para a rota padrão (Dashboard) configurada em app.routes.ts
       this.router.navigate(['/dashboard']);
     }, 1200);
   }
