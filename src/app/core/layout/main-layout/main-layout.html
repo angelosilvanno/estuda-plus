@@ -7,23 +7,16 @@
     [class.p-4]="sidebarRetraida"
     class="bg-(--bg-surface) border-r border-(--border-color) hidden md:flex flex-col sticky top-0 h-screen z-20 shrink-0 transition-all duration-300 ease-in-out shadow-3xs"
   >
-    
-    <button 
-      (click)="alternarSidebar()"
-      class="absolute -right-3.5 top-7 w-7 h-7 rounded-full bg-(--bg-surface) border border-(--border-color) hover:border-blue-500 text-(--text-muted) hover:text-blue-600 flex items-center justify-center cursor-pointer shadow-xs hover:scale-105 transition-all z-30"
-      [title]="sidebarRetraida ? 'Expandir Menu' : 'Recolher Menu'"
-    >
-      <svg *ngIf="!sidebarRetraida" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
-      <svg *ngIf="sidebarRetraida" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-    </button>
-
+    <!-- Logotipo principal -->
     <div class="flex items-center gap-2.5 mb-8" [class.justify-center]="sidebarRetraida">
       <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-md shadow-xs shrink-0">E+</div>
       <span *ngIf="!sidebarRetraida" class="font-bold text-lg tracking-tight transition-all">Estuda+</span>
     </div>
     
+    <!-- Menu de Navegação Global -->
     <nav class="flex-1 space-y-1">
       
+      <!-- Dashboard -->
       <a 
         [routerLink]="['/dashboard']" 
         routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-300 font-bold"
@@ -36,6 +29,7 @@
         <span *ngIf="!sidebarRetraida" class="transition-all">Dashboard</span>
       </a>
 
+      <!-- Cronograma -->
       <a 
         [routerLink]="['/cronograma']" 
         routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-300 font-bold"
@@ -47,6 +41,7 @@
         <span *ngIf="!sidebarRetraida" class="transition-all">Cronograma</span>
       </a>
 
+      <!-- Disciplinas -->
       <a 
         [routerLink]="['/disciplinas']" 
         routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-300 font-bold"
@@ -70,6 +65,7 @@
         <span *ngIf="!sidebarRetraida" class="transition-all">Metas</span>
       </a>
 
+      <!-- Pomodoro -->
       <a 
         [routerLink]="['/pomodoro']" 
         routerLinkActive="bg-blue-50 text-blue-600 dark:bg-blue-950/30 dark:text-blue-300 font-bold"
@@ -87,16 +83,26 @@
     
     <header class="h-16 bg-(--bg-surface) border-b border-(--border-color) flex items-center justify-between px-6 sticky top-0 z-10 shrink-0 shadow-3xs">
       
-      <div class="flex items-center gap-4 w-96">
+      <div class="flex items-center gap-2 w-96">
         <button 
           (click)="alternarMenu()"
-          class="p-2 text-(--text-muted) hover:bg-(--bg-primary) rounded-xl md:hidden cursor-pointer"
+          class="p-2 text-(--text-muted) hover:bg-(--bg-primary) rounded-xl md:hidden cursor-pointer shrink-0"
           aria-label="Menu Principal"
         >
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
 
-        <div class="relative w-full hidden sm:block">
+        <button 
+          (click)="alternarSidebar()"
+          class="hidden md:flex p-2 text-(--text-muted) hover:bg-(--bg-primary) hover:text-(--text-main) rounded-xl cursor-pointer shrink-0"
+          [title]="sidebarRetraida ? 'Expandir Menu Lateral' : 'Recolher Menu Lateral'"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+          </svg>
+        </button>
+
+        <div class="relative w-full hidden sm:block ml-2">
           <input 
             type="text" 
             placeholder="Buscar no Estuda+..." 
