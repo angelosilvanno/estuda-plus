@@ -29,7 +29,7 @@ export class Perfil implements OnInit {
         const usuario = JSON.parse(dadosUsuario);
         this.nome = usuario.nome || '';
         this.email = usuario.email || '';
-        this.curso = usuario.curso || 'Engenharia de Software';
+        this.curso = usuario.curso || 'Estudante';
         if (usuario.avatarUrl) {
           this.avatarUrl = usuario.avatarUrl;
         }
@@ -54,7 +54,11 @@ export class Perfil implements OnInit {
       let usuario: any = {};
       
       if (dadosUsuario) {
-        usuario = JSON.parse(dadosUsuario);
+        try {
+          usuario = JSON.parse(dadosUsuario);
+        } catch (e) {
+          usuario = {};
+        }
       }
 
       usuario.nome = this.nome;
@@ -64,6 +68,19 @@ export class Perfil implements OnInit {
 
       localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
       sessionStorage.setItem('usuarioLogado', JSON.stringify(usuario));
+
+      const dadosCadastro = localStorage.getItem('usuarioCadastro');
+      if (dadosCadastro) {
+        try {
+          const cadastroObj = JSON.parse(dadosCadastro);
+          if (cadastroObj.email === usuario.email || cadastroObj.nome) {
+            cadastroObj.nome = this.nome;
+            cadastroObj.email = this.email;
+            cadastroObj.curso = this.curso;
+            localStorage.setItem('usuarioCadastro', JSON.stringify(cadastroObj));
+          }
+        } catch (e) {}
+      }
 
       this.loading = false;
       this.sucessoMensagem = 'Perfil atualizado com sucesso! Recarregue a página para aplicar as alterações no painel.';

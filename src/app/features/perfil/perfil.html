@@ -1,6 +1,5 @@
 <div class="space-y-6">
   
-  <!-- CABEÇALHO DO PERFIL -->
   <div class="border-b border-(--border-color) pb-5">
     <div class="flex items-center gap-2 text-xs text-(--text-muted) mb-1">
       <span>Painel</span>
@@ -11,7 +10,6 @@
     <p class="text-xs text-(--text-muted) mt-1">Gerencie suas informações pessoais, preferências de notificação e tema de sua plataforma.</p>
   </div>
 
-  <!-- ALERTAS DE SUCESSO OU ERRO -->
   <div *ngIf="sucessoMensagem" aria-live="polite" class="p-3.5 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 rounded-xl text-xs border border-emerald-200/50 flex items-center gap-2">
     <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
     <span>{{ sucessoMensagem }}</span>
@@ -22,17 +20,13 @@
     <span>{{ erroMensagem }}</span>
   </div>
 
-  <!-- GRID PRINCIPAL DE CONFIGURAÇÃO -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     
-    <!-- COLUNA DA ESQUERDA (Card de Visualização e Estatísticas) -->
-    <div class="lg:col-span-1 bg-(--bg-surface) p-6 rounded-2xl border border-(--border-color) shadow-xs space-y-6 h-fit">
+    <div class="lg:col-span-1 bg-(--bg-surface) p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:-translate-y-0.5 hover:shadow-xs transition-all duration-300 space-y-6 h-fit">
       
-      <!-- Visualização do Avatar -->
       <div class="text-center">
         <div class="relative w-24 h-24 mx-auto mb-4 group">
           <img [src]="avatarUrl" alt="Avatar do Estudante" class="w-full h-full rounded-full object-cover border-2 border-(--border-color) group-hover:opacity-85 transition-opacity">
-          <!-- Botão decorativo de alteração da foto -->
           <div class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-blue-600 border-2 border-(--bg-surface) text-white flex items-center justify-center cursor-pointer shadow-sm hover:scale-105 transition-transform" title="Alterar Foto">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
@@ -41,10 +35,8 @@
         <p class="text-[10px] text-(--text-muted) uppercase tracking-wider mt-1 font-semibold">{{ curso || 'Estudante' }}</p>
       </div>
 
-      <!-- Divisor interno -->
       <div class="border-t border-(--border-color)"></div>
 
-      <!-- Estatísticas Rápidas do Aluno -->
       <div class="space-y-3.5">
         <h4 class="text-xs font-bold uppercase tracking-wider text-(--text-muted)">Seu Progresso</h4>
         
@@ -64,17 +56,14 @@
 
     </div>
 
-    <!-- COLUNA DA DIREITA (Formulário de Edição e Preferências) -->
-    <div class="lg:col-span-2 bg-(--bg-surface) p-6 rounded-2xl border border-(--border-color) shadow-xs">
+    <div class="lg:col-span-2 bg-(--bg-surface) p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
       
       <form (ngSubmit)="onSalvar()" class="space-y-6">
         
-        <!-- SEÇÃO 1: Dados Cadastrais -->
         <div class="space-y-4">
           <h3 class="text-xs font-extrabold uppercase tracking-widest text-blue-600">Dados Gerais</h3>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Nome Completo -->
             <div>
               <label for="nomeInput" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1.5">Nome Completo</label>
               <input 
@@ -87,7 +76,6 @@
               >
             </div>
 
-            <!-- E-mail Cadastrado -->
             <div>
               <label for="emailInput" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1.5">E-mail de Contato</label>
               <input 
@@ -101,7 +89,6 @@
             </div>
           </div>
 
-          <!-- Curso / Área de Estudos -->
           <div class="w-full sm:w-1/2">
             <label for="cursoInput" class="block text-xs font-semibold text-(--text-muted) uppercase tracking-wider mb-1.5">Área de Estudos / Curso</label>
             <input 
@@ -115,15 +102,12 @@
           </div>
         </div>
 
-        <!-- Divisor de Seção -->
         <div class="border-t border-(--border-color)"></div>
 
-        <!-- SEÇÃO 2: Preferências de Notificações (RF12) -->
         <div class="space-y-4">
           <h3 class="text-xs font-extrabold uppercase tracking-widest text-blue-600">Preferências do Sistema</h3>
           
           <div class="space-y-3.5">
-            <!-- Toggle de Notificação por E-mail -->
             <div class="flex items-center justify-between p-3.5 bg-(--bg-primary) rounded-xl border border-(--border-color)">
               <div>
                 <h4 class="text-xs font-bold text-(--text-main)">Relatórios Semanais por E-mail</h4>
@@ -137,7 +121,6 @@
               >
             </div>
 
-            <!-- Toggle de Notificação do Sistema -->
             <div class="flex items-center justify-between p-3.5 bg-(--bg-primary) rounded-xl border border-(--border-color)">
               <div>
                 <h4 class="text-xs font-bold text-(--text-main)">Notificações push em tempo real</h4>
@@ -153,14 +136,12 @@
           </div>
         </div>
 
-        <!-- Botão de Ação para Salvar -->
         <div class="flex justify-end pt-2 border-t border-(--border-color)">
           <button 
             type="submit" 
             [disabled]="loading"
             class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl transition-all shadow-xs active:scale-[0.99] disabled:opacity-50 flex items-center gap-2 cursor-pointer"
           >
-            <!-- Loader Spinner -->
             <svg *ngIf="loading" class="animate-spin h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
