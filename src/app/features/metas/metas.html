@@ -1,1 +1,92 @@
-<p>metas works!</p>
+<div class="space-y-6">
+
+  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-(--border-color) pb-5">
+    <div>
+      <div class="flex items-center gap-2 text-xs text-(--text-muted) mb-1">
+        <span>Planejamento</span>
+        <span>&gt;</span>
+        <span class="text-(--text-main) font-medium">Metas</span>
+      </div>
+      <h1 class="text-2xl font-bold tracking-tight">Metas de Estudo</h1>
+      <p class="text-xs text-(--text-muted) mt-1">Defina, gerencie e acompanhe seus objetivos diários, semanais e mensais.</p>
+    </div>
+    
+    <button class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl transition-all shadow-xs hover:-translate-y-0.5 active:scale-[0.99] flex items-center gap-2 cursor-pointer">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+      Nova Meta
+    </button>
+  </div>
+
+  <div class="flex flex-wrap items-center gap-2">
+    <button 
+      (click)="abaAtiva = 'todas'"
+      [class]="abaAtiva === 'todas' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-(--bg-surface) text-(--text-muted) border border-(--border-color) hover:text-(--text-main) cursor-pointer'"
+    >
+      Todas
+    </button>
+    <button 
+      (click)="abaAtiva = 'diaria'"
+      [class]="abaAtiva === 'diaria' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-(--bg-surface) text-(--text-muted) border border-(--border-color) hover:text-(--text-main) cursor-pointer'"
+    >
+      Diárias
+    </button>
+    <button 
+      (click)="abaAtiva = 'semanal'"
+      [class]="abaAtiva === 'semanal' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-(--bg-surface) text-(--text-muted) border border-(--border-color) hover:text-(--text-main) cursor-pointer'"
+    >
+      Semanais
+    </button>
+    <button 
+      (click)="abaAtiva = 'mensal'"
+      [class]="abaAtiva === 'mensal' ? 'px-4 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-xs cursor-pointer' : 'px-4 py-1.5 text-xs font-semibold rounded-lg bg-(--bg-surface) text-(--text-muted) border border-(--border-color) hover:text-(--text-main) cursor-pointer'"
+    >
+      Mensais
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div 
+      *ngFor="let meta of metasFiltradas"
+      class="bg-(--bg-surface) rounded-2xl border border-slate-100 dark:border-slate-800 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:-translate-y-0.5 hover:shadow-xs transition-all duration-300 p-6 flex flex-col justify-between space-y-5"
+    >
+      <div class="flex justify-between items-start">
+        <div>
+          <span [class]="meta.tipo === 'diaria' ? 'text-[9px] font-extrabold px-2.5 py-1 rounded-md bg-blue-50 text-blue-600 border border-blue-100 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-950/30 uppercase tracking-wider' : (meta.tipo === 'semanal' ? 'text-[9px] font-extrabold px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-950/30 uppercase tracking-wider' : 'text-[9px] font-extrabold px-2.5 py-1 rounded-md bg-purple-50 text-purple-600 border border-purple-100 dark:bg-purple-950/20 dark:text-purple-400 dark:border-purple-950/30 uppercase tracking-wider')">
+            {{ meta.tipo === 'diaria' ? 'Diária' : (meta.tipo === 'semanal' ? 'Semanal' : 'Mensal') }}
+          </span>
+          <h3 class="text-xs font-bold text-(--text-main) mt-4 line-clamp-2 leading-tight">{{ meta.descricao }}</h3>
+        </div>
+
+        <button 
+          *ngIf="!meta.concluida"
+          (click)="incrementarProgresso(meta)"
+          class="w-8 h-8 rounded-lg bg-(--bg-primary) border border-(--border-color) hover:border-blue-500 hover:text-blue-600 flex items-center justify-center cursor-pointer transition-all shadow-3xs"
+          title="Incrementar progresso"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+        </button>
+
+        <div 
+          *ngIf="meta.concluida"
+          class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 border border-emerald-100 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-950/30 flex items-center justify-center"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex justify-between items-center text-[10px] font-bold text-(--text-muted)">
+          <span>{{ meta.atual }} / {{ meta.meta }} {{ meta.unidade }}</span>
+          <span>{{ meta.porcentagem }}%</span>
+        </div>
+        <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+          <div 
+            [class]="meta.concluida ? 'h-full bg-emerald-500 rounded-full transition-all duration-300' : 'h-full bg-blue-500 rounded-full transition-all duration-300'"
+            [style.width.%]="meta.porcentagem"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
