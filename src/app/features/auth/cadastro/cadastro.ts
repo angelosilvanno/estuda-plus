@@ -10,22 +10,20 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css'
 })
+
 export class Cadastro {
-  // Modelos de dados vinculados ao formulário
   nome = '';
   email = '';
   senha = '';
   confirmarSenha = '';
   aceitouTermos = false;
 
-  // Controle de estados visuais
   loading = false;
   erroMensagem = '';
 
   constructor(private router: Router) {}
 
   onSubmit(): void {
-    // Validações básicas de formulário
     if (!this.nome || !this.email || !this.senha || !this.confirmarSenha) {
       this.erroMensagem = 'Por favor, preencha todos os campos obrigatórios.';
       return;
@@ -44,10 +42,15 @@ export class Cadastro {
     this.loading = true;
     this.erroMensagem = '';
 
-    // Simulação do tempo de resposta do servidor
+    const dadosUsuario = {
+      nome: this.nome,
+      email: this.email,
+      curso: 'Estudante'
+    };
+    localStorage.setItem('usuarioCadastro', JSON.stringify(dadosUsuario));
+
     setTimeout(() => {
       this.loading = false;
-      // Após o cadastro, redireciona para a tela de login para autenticação
       this.router.navigate(['/auth/login']);
     }, 1500);
   }
