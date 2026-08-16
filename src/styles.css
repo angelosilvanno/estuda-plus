@@ -1,3 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
 
-@import 'tailwindcss';
+/* 1. SISTEMA DE DESIGN DE SOMBRAS SUAVES (Efeito de profundidade premium) */
+:root {
+  --shadow-premium-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.02), 0 1px 3px 0 rgba(0, 0, 0, 0.01);
+  --shadow-premium-sm: 0 4px 20px 0 rgba(0, 0, 0, 0.015), 0 1px 3px 0 rgba(0, 0, 0, 0.01);
+  --shadow-premium-md: 0 12px 30px -4px rgba(0, 0, 0, 0.02), 0 4px 20px -2px rgba(0, 0, 0, 0.01);
+  
+  /* Melhora a renderização de fontes do navegador */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. CUSTOM SCROLLBAR (Discreto e minimalista nas tabelas e menus) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0; /* Slate 200 */
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #CBD5E1; /* Slate 300 */
+}
+
+/* 3. CLASSE DE CARD PREMIUM (Substitui as dezenas de classes do Tailwind) */
+.card-premium {
+  background: var(--bg-surface);
+  border: 1px solid rgba(226, 232, 240, 0.5); /* Slate 200 de baixíssima opacidade */
+  border-radius: 1rem; /* 16px */
+  box-shadow: var(--shadow-premium-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efeito de flutuação suave ao passar o mouse */
+.card-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-premium-md);
+  border-color: rgba(59, 130, 246, 0.15); /* Borda azul bem suave no foco */
+}
+
+/* 4. ITEM DE TAREFA PREMIUM (Interatividade na checklist) */
+.task-item {
+  background: var(--bg-surface);
+  border: 1px solid transparent;
+  border-radius: 0.75rem; /* 12px */
+  transition: all 0.2s ease-in-out;
+}
+.task-item:hover {
+  background: var(--bg-primary);
+  border-color: var(--border-color);
+  transform: scale(1.002);
+}

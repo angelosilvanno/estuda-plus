@@ -1,9 +1,9 @@
 <div class="space-y-6">
 
-  <!-- CABEÇALHO DO DASHBOARD (Boas-vindas) -->
-  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-(--border-color) pb-5">
+  <!-- CABEÇALHO DO DASHBOARD (Banner Hero Suave) -->
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-linear-to-r from-blue-500/5 via-indigo-500/5 to-transparent p-6 rounded-2xl border border-blue-500/10 shadow-3xs">
     <div>
-      <h1 class="text-2xl font-bold tracking-tight">Olá, {{ estudanteNome }}! 👋</h1>
+      <h1 class="text-2xl font-bold tracking-tight">Olá, <span class="text-blue-600 dark:text-blue-400 font-extrabold">{{ estudanteNome }}</span>! 👋</h1>
       <p class="text-xs text-(--text-muted) mt-1">Seu ritmo de estudos está excelente. Você já concluiu {{ metaSemanalPorcentagem }}% da sua meta de horas desta semana.</p>
     </div>
     <div class="text-xs bg-blue-50 text-blue-600 dark:bg-blue-950/20 dark:text-blue-400 px-3 py-1.5 rounded-xl font-medium border border-blue-100 dark:border-blue-900/40">
@@ -11,11 +11,11 @@
     </div>
   </div>
 
-  <!-- QUADRO DE METRICAS PRINCIPAIS (KPI Cards) -->
+  <!-- QUADRO DE METRICAS PRINCIPAIS (KPI Cards limpos com .card-premium) -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     
     <!-- KPI 1: Horas de Hoje -->
-    <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+    <div class="card-premium p-5">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-[10px] font-bold text-(--text-muted) uppercase tracking-wider">Estudado Hoje</p>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- KPI 2: Horas na Semana -->
-    <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+    <div class="card-premium p-5">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-[10px] font-bold text-(--text-muted) uppercase tracking-wider">Total da Semana</p>
@@ -42,14 +42,13 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         </div>
       </div>
-      <!-- Barra de progresso da meta semanal -->
-      <div class="w-full bg-(--bg-primary) h-1.5 rounded-full mt-3.5 overflow-hidden">
+      <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-3.5 overflow-hidden">
         <div class="bg-emerald-500 h-full rounded-full" [style.width.%]="metaSemanalPorcentagem"></div>
       </div>
     </div>
 
-    <!-- KPI 3: Streak de Dias (Foco Consecutivo) -->
-    <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+    <!-- KPI 3: Streak de Dias -->
+    <div class="card-premium p-5">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-[10px] font-bold text-(--text-muted) uppercase tracking-wider">Foco Diário</p>
@@ -59,11 +58,11 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
         </div>
       </div>
-      <p class="text-[10px] text-(--text-muted) mt-3">Sua melhor sequência foi de 18 dias.</p>
+      <p class="text-[10px] text-(--text-muted) mt-3">Sua maior sequência foi de 18 dias.</p>
     </div>
 
     <!-- KPI 4: Próxima Prova -->
-    <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+    <div class="card-premium p-5">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-[10px] font-bold text-(--text-muted) uppercase tracking-wider">Próxima Avaliação</p>
@@ -78,14 +77,14 @@
 
   </div>
 
-  <!-- DISPOSIÇÃO DO CORPO PRINCIPAL (Layout Dividido em Colunas) -->
+  <!-- DISPOSIÇÃO DO CORPO PRINCIPAL -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     
     <!-- COLUNA DA ESQUERDA (2/3): Tarefas e Gráfico Semanal -->
     <div class="lg:col-span-2 space-y-6">
       
-      <!-- RF09 - Lista de Tarefas do Dia -->
-      <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+      <!-- RF09 - Lista de Tarefas do Dia (com .card-premium e .task-item) -->
+      <div class="card-premium p-5">
         <div class="flex items-center justify-between mb-5">
           <h3 class="text-sm font-bold">Plano de Ação de Hoje</h3>
           <span class="text-[11px] text-(--text-muted)">Pendentes: {{ tarefas.length }}</span>
@@ -94,14 +93,14 @@
         <div class="space-y-2.5">
           <label 
             *ngFor="let tarefa of tarefas" 
-            class="flex items-center justify-between p-3 bg-(--bg-primary) rounded-xl cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800/40 transition-colors"
+            class="flex items-center justify-between p-3.5 task-item cursor-pointer"
           >
             <div class="flex items-center gap-3">
               <input 
                 type="checkbox" 
                 [checked]="tarefa.concluida"
                 (change)="alternarTarefa(tarefa)"
-                class="w-4.5 h-4.5 rounded text-blue-600 border-(--border-color) focus:ring-blue-500 bg-(--bg-primary)"
+                class="w-4.5 h-4.5 rounded text-blue-600 border-slate-300 dark:border-slate-700 focus:ring-blue-500 bg-(--bg-primary)"
               >
               <div>
                 <p [class]="tarefa.concluida ? 'text-xs font-semibold line-through text-(--text-muted)' : 'text-xs font-semibold text-(--text-main)'">
@@ -111,7 +110,6 @@
               </div>
             </div>
 
-            <!-- Badge de Prioridade -->
             <span [class]="tarefa.prioridade === 'alta' ? 'px-2 py-0.5 text-[9px] font-bold rounded-md bg-red-100 text-red-700 dark:bg-red-950/20 dark:text-red-400' : (tarefa.prioridade === 'concluida' ? 'px-2 py-0.5 text-[9px] font-bold rounded-md bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-400' : 'px-2 py-0.5 text-[9px] font-bold rounded-md bg-blue-100 text-blue-700 dark:bg-blue-950/20 dark:text-blue-400')">
               {{ tarefa.prioridade === 'concluida' ? 'Concluída' : 'Prioridade ' + tarefa.prioridade }}
             </span>
@@ -120,13 +118,12 @@
       </div>
 
       <!-- RF11 - Gráfico de Horas Estudadas na Semana -->
-      <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs">
+      <div class="card-premium p-5">
         <div>
           <h3 class="text-sm font-bold">Evolução de Estudos</h3>
           <p class="text-[11px] text-(--text-muted) mt-0.5">Histórico comparativo de horas dedicadas por dia da semana.</p>
         </div>
 
-        <!-- Área do Gráfico em CSS Puro e Flexbox -->
         <div class="flex items-end justify-between h-36 gap-2 pt-6">
           <div *ngFor="let dia of historicoSemanal" class="flex flex-col items-center flex-1 h-full justify-end">
             <span class="text-[9px] text-(--text-muted) mb-1 font-mono font-bold">{{ dia.horas }}</span>
@@ -143,15 +140,15 @@
 
     </div>
 
-    <!-- COLUNA DA DIREITA (1/3): Próximas Provas e Divisão de Estudos -->
+    <!-- COLUNA DA DIREITA (1/3) -->
     <div class="space-y-6">
       
-      <!-- RF04 - Próximas Provas / Avaliações -->
-      <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs space-y-4">
+      <!-- RF04 - Próximas Provas -->
+      <div class="card-premium p-5 space-y-4">
         <h3 class="text-sm font-bold">Próximos Compromissos</h3>
         
         <div class="space-y-3">
-          <div *ngFor="let prova of provas" class="p-3 bg-(--bg-primary) border border-(--border-color) rounded-xl flex items-center gap-3">
+          <div *ngFor="let prova of provas" class="p-3 bg-(--bg-primary) border border-transparent rounded-xl flex items-center gap-3">
             <div class="w-9 h-9 rounded-lg bg-red-100 text-red-600 dark:bg-red-950/20 dark:text-red-400 flex items-center justify-center font-bold text-xs">P</div>
             <div class="min-w-0 flex-1">
               <h4 class="text-xs font-bold truncate text-(--text-main)">{{ prova.disciplina }}</h4>
@@ -162,12 +159,12 @@
         </div>
       </div>
 
-      <!-- RF08 - Próximas Revisões Ativas (Spaced Repetition) -->
-      <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs space-y-4">
+      <!-- RF08 - Próximas Revisões Ativas -->
+      <div class="card-premium p-5 space-y-4">
         <h3 class="text-sm font-bold">Revisões Espaçadas</h3>
 
         <div class="space-y-3">
-          <div *ngFor="let revisao of revisoes" class="p-3 bg-(--bg-primary) border border-(--border-color) rounded-xl flex items-center justify-between gap-2">
+          <div *ngFor="let revisao of revisoes" class="p-3 bg-(--bg-primary) border border-transparent rounded-xl flex items-center justify-between gap-2">
             <div class="flex items-center gap-3 min-w-0">
               <div class="w-9 h-9 rounded-lg bg-orange-100 text-orange-600 dark:bg-orange-950/20 dark:text-orange-400 flex items-center justify-center font-bold text-xs">R</div>
               <div class="min-w-0">
@@ -175,7 +172,6 @@
                 <p class="text-[10px] text-(--text-muted) truncate mt-0.5">{{ revisao.assunto }}</p>
               </div>
             </div>
-            <!-- Status Badge -->
             <span [class]="'px-2 py-0.5 text-[9px] font-bold rounded-md border shrink-0 ' + revisao.corClasse">
               {{ revisao.status }}
             </span>
@@ -184,7 +180,7 @@
       </div>
 
       <!-- RF11 - Distribuição por Disciplina -->
-      <div class="bg-(--bg-surface) p-5 rounded-2xl border border-(--border-color) shadow-2xs space-y-4">
+      <div class="card-premium p-5 space-y-4">
         <h3 class="text-sm font-bold">Carga de Horas por Matéria</h3>
 
         <div class="space-y-3">
@@ -193,8 +189,7 @@
               <span class="font-medium text-(--text-main)">{{ dis.nome }}</span>
               <span class="font-bold text-(--text-muted)">{{ dis.porcentagem }}%</span>
             </div>
-            <!-- Barra horizontal empilhada -->
-            <div class="w-full bg-(--bg-primary) h-1.5 rounded-full overflow-hidden">
+            <div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
               <div [class]="'h-full rounded-full ' + dis.corClasse" [style.width.%]="dis.porcentagem"></div>
             </div>
           </div>

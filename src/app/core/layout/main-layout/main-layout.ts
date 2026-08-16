@@ -15,16 +15,14 @@ export class MainLayout {
   avatarUrl = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80';
 
   menuAberto = false;
+  sidebarRetraida = false;
 
   constructor() {
     const dadosSessao = localStorage.getItem('usuarioLogado') || sessionStorage.getItem('usuarioLogado');
-    
     if (dadosSessao) {
       try {
         const usuario = JSON.parse(dadosSessao);
-        
         this.estudanteNome = usuario.nome || '';
-        
         if (usuario.curso) {
           this.estudanteCurso = usuario.curso;
         }
@@ -36,5 +34,9 @@ export class MainLayout {
 
   alternarMenu(): void {
     this.menuAberto = !this.menuAberto;
+  }
+
+  alternarSidebar(): void {
+    this.sidebarRetraida = !this.sidebarRetraida;
   }
 }
