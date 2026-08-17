@@ -39,6 +39,44 @@ export class Perfil implements OnInit {
     }
   }
 
+  onFileSelected(event: any): void {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.avatarUrl = reader.result as string;
+
+        const dadosUsuario =
+          localStorage.getItem('usuarioLogado') ||
+          sessionStorage.getItem('usuarioLogado');
+
+        if (dadosUsuario) {
+          try {
+            const usuario = JSON.parse(dadosUsuario);
+
+            usuario.avatarUrl = this.avatarUrl;
+
+            localStorage.setItem(
+              'usuarioLogado',
+              JSON.stringify(usuario)
+            );
+
+            sessionStorage.setItem(
+              'usuarioLogado',
+              JSON.stringify(usuario)
+            );
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSalvar(): void {
     if (!this.nome || !this.email) {
       this.erroMensagem = 'Os campos Nome Completo e E-mail são obrigatórios.';
@@ -83,7 +121,7 @@ export class Perfil implements OnInit {
       }
 
       this.loading = false;
-      this.sucessoMensagem = 'Perfil atualizado com sucesso! Recarregue a página para aplicar as alterações no painel.';
+      this.sucessoMensagem = 'Perfil atualizado com sucesso!';
     }, 1000);
   }
 }
