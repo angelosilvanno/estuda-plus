@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
@@ -17,12 +17,17 @@ export class MainLayout {
   menuAberto = false;
   sidebarRetraida = false;
 
-  constructor() {
-    const dadosSessao = localStorage.getItem('usuarioLogado') || sessionStorage.getItem('usuarioLogado');
+  constructor(private router: Router) {
+    const dadosSessao =
+      localStorage.getItem('usuarioLogado') ||
+      sessionStorage.getItem('usuarioLogado');
+
     if (dadosSessao) {
       try {
         const usuario = JSON.parse(dadosSessao);
+
         this.estudanteNome = usuario.nome || '';
+
         if (usuario.curso) {
           this.estudanteCurso = usuario.curso;
         }
@@ -38,5 +43,11 @@ export class MainLayout {
 
   alternarSidebar(): void {
     this.sidebarRetraida = !this.sidebarRetraida;
+  }
+
+  logout(): void {
+    localStorage.removeItem('usuarioLogado');
+    sessionStorage.removeItem('usuarioLogado');
+    this.router.navigate(['/auth/login']);
   }
 }
