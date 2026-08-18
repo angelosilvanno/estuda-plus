@@ -2,7 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
 
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { 
+    path: '', 
+    loadComponent: () => import('./features/auth/login/login').then(m => m.Login),
+    pathMatch: 'full' 
+  },
 
   // RF01 - Autenticação (Páginas fora do painel principal)
   {
