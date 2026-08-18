@@ -3,13 +3,11 @@
   <div class="hidden lg:flex lg:w-1/2 bg-linear-to-br from-blue-600 via-blue-700 to-blue-800 p-16 flex-col justify-between relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top_right,var(--tw-gradient-stops))] from-white via-blue-500 to-transparent"></div>
     
-    <!-- Logo/Identidade do Painel -->
     <div class="flex items-center gap-2.5 z-10">
       <div class="w-9 h-9 rounded-xl bg-white text-blue-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-blue-950/20">E+</div>
       <span class="font-bold text-xl text-white tracking-tight">Estuda+</span>
     </div>
 
-    <!-- Mensagem Principal de Boas-vindas -->
     <div class="max-w-md z-10">
       <span class="text-blue-100 text-xs font-semibold uppercase tracking-wider bg-blue-500/30 px-3 py-1 rounded-full">Organização & Foco</span>
       <h2 class="text-4xl font-extrabold text-white tracking-tight mt-4 leading-tight">Sua rotina de estudos inteligente começa aqui.</h2>
@@ -22,7 +20,6 @@
     </div>
   </div>
 
-  <!-- COLUNA DIREITA: Card de Formulário -->
   <div class="w-full lg:w-1/2 flex flex-col justify-center items-center p-6 sm:p-12 md:p-16 relative">
     
     <!-- Logo visível apenas no Mobile/Tablet -->
@@ -62,7 +59,6 @@
           >
         </div>
 
-        <!-- Campo Senha -->
         <div>
           <div class="flex justify-between items-center mb-1.5">
             <label for="password" class="text-xs font-semibold text-(--text-muted) uppercase tracking-wider">Senha</label>
@@ -80,7 +76,6 @@
           >
         </div>
 
-        <!-- Checkbox Lembrar de Mim -->
         <div class="flex items-center justify-between pt-1">
           <label class="flex items-center gap-2 cursor-pointer select-none">
             <input 
@@ -99,7 +94,6 @@
           [disabled]="loading"
           class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all shadow-md shadow-blue-500/10 active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2 mt-2"
         >
-          <!-- Loader de carregamento animado -->
           <svg *ngIf="loading" class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
