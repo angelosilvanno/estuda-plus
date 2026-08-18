@@ -9,22 +9,18 @@ export const routes: Routes = [
   },
 
   // RF01 - Autenticação (Páginas fora do painel principal)
-  {
-    path: 'auth',
-    children: [
-      { 
-        path: 'login', 
-        loadComponent: () => import('./features/auth/login/login').then(m => m.Login) 
-      },
-      { 
-        path: 'cadastro', 
-        loadComponent: () => import('./features/auth/cadastro/cadastro').then(m => m.Cadastro) 
-      },
-      { 
-        path: 'recuperar-senha', 
-        loadComponent: () => import('./features/auth/recuperar/recuperar').then(m => m.Recuperar) 
-      }
-    ]
+  { 
+    path: '', 
+    loadComponent: () => import('./features/auth/login/login').then(m => m.Login),
+    pathMatch: 'full' 
+  },
+  { 
+    path: 'cadastro', 
+    loadComponent: () => import('./features/auth/cadastro/cadastro').then(m => m.Cadastro) 
+  },
+  { 
+    path: 'recuperar-senha', 
+    loadComponent: () => import('./features/auth/recuperar/recuperar').then(m => m.Recuperar) 
   },
 
   // Área Administrativa / Interna do Estudante (Compartilha Sidebar/Navbar)
