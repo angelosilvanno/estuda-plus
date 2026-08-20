@@ -10,10 +10,10 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.css'
 })
-
 export class Cadastro {
   nome = '';
   email = '';
+  genero = '';
   senha = '';
   confirmarSenha = '';
   aceitouTermos = false;
@@ -24,7 +24,7 @@ export class Cadastro {
   constructor(private router: Router) {}
 
   onSubmit(): void {
-    if (!this.nome || !this.email || !this.senha || !this.confirmarSenha) {
+    if (!this.nome || !this.email || !this.genero || !this.senha || !this.confirmarSenha) {
       this.erroMensagem = 'Por favor, preencha todos os campos obrigatórios.';
       return;
     }
@@ -45,13 +45,14 @@ export class Cadastro {
     const dadosUsuario = {
       nome: this.nome,
       email: this.email,
+      genero: this.genero,
       curso: 'Estudante'
     };
     localStorage.setItem('usuarioCadastro', JSON.stringify(dadosUsuario));
 
     setTimeout(() => {
       this.loading = false;
-      this.router.navigate(['/auth/login']);
+      this.router.navigate(['/']);
     }, 1500);
   }
 }
