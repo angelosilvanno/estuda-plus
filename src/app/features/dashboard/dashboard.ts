@@ -39,6 +39,8 @@ export class Dashboard {
   streakDias = 12;
   proximaProvaData = 'Em 2 dias (Sexta)';
 
+  novaTarefaTexto = '';
+
   tarefas: TarefaDia[] = [
     { id: 1, texto: 'Revisar derivadas parciais de 2ª ordem', disciplina: 'Cálculo II', prioridade: 'alta', concluida: false },
     { id: 2, texto: 'Ler capítulo 3 sobre Álgebra Linear', disciplina: 'Geometria Analítica', prioridade: 'concluida', concluida: true },
@@ -84,10 +86,38 @@ export class Dashboard {
         console.error('Erro ao ler nome do usuário para o Dashboard:', error);
       }
     }
+
+    const tarefasSalvas = localStorage.getItem('usuarioTarefas');
+    if (tarefasSalvas) {
+      try {
+        this.tarefas = JSON.parse(tarefasSalvas);
+      } catch (error) {
+        console.error('Erro ao ler tarefas salvas:', error);
+      }
+    } else {
+      localStorage.setItem('usuarioTarefas', JSON.stringify(this.tarefas));
+    }
   }
 
   alternarTarefa(tarefa: TarefaDia): void {
     tarefa.concluida = !tarefa.concluida;
     tarefa.prioridade = tarefa.concluida ? 'concluida' : 'media';
+    localStorage.setItem('usuarioTarefas', JSON.stringify(this.tarefas));
+  }
+
+  adicionarTarefa(): void {
+    if (!this.novaTarefaTexto.trim()) return;
+
+    const novaTarefa: TarefaDia = {
+      id: Date.now(),
+      texto: this.novaTarefaTexto.trim(),
+      disciplina: 'Foco Geral',
+      prioridade: 'media',
+      concluida: false
+    };
+
+    this.tarefas.unshift(novaTarefa);
+    localStorage.setItem('usuarioTarefas', JSON.stringify(this.tarefas));
+    this.novaTarefaTexto = '';
   }
 }

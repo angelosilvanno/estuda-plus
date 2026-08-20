@@ -26,7 +26,7 @@
         </div>
       </div>
       <p class="text-[10px] text-emerald-600 font-bold mt-3 flex items-center gap-1">
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
+        <svg class="w-3 h-3 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
         +15m em relação a ontem
       </p>
     </div>
@@ -114,6 +114,26 @@
               {{ tarefa.prioridade === 'concluida' ? 'Concluída' : 'Prioridade ' + tarefa.prioridade }}
             </span>
           </label>
+        </div>
+
+        <!-- Linha de Entrada de Texto para Adição Rápida (Quick Add) -->
+        <div class="mt-4 pt-4 border-t border-(--border-color)">
+          <div class="relative flex items-center transition-all duration-300">
+            <input 
+              type="text" 
+              [(ngModel)]="novaTarefaTexto" 
+              (keyup.enter)="adicionarTarefa()"
+              placeholder="+ Adicionar nova tarefa para hoje..." 
+              class="w-full bg-transparent border border-transparent rounded-xl px-3 py-2 text-xs text-(--text-muted) focus:text-(--text-main) focus:bg-(--bg-primary) focus:border---border-color focus:px-4 focus:py-2.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 cursor-pointer focus:cursor-text"
+            >
+            <button 
+              *ngIf="novaTarefaTexto.trim()"
+              (click)="adicionarTarefa()"
+              class="absolute right-2 px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-bold rounded-lg cursor-pointer transition-all shadow-3xs active:scale-[0.98]"
+            >
+              Adicionar
+            </button>
+          </div>
         </div>
       </div>
 
