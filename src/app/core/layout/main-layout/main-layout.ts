@@ -48,6 +48,6 @@ export class MainLayout {
   logout(): void {
     localStorage.removeItem('usuarioLogado');
     sessionStorage.removeItem('usuarioLogado');
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/']);
   }
 }
